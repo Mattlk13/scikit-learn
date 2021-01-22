@@ -97,7 +97,7 @@ What are the inclusion criteria for new algorithms ?
 ----------------------------------------------------
 
 We only consider well-established algorithms for inclusion. A rule of thumb is
-at least 3 years since publication, 200+ citations and wide use and
+at least 3 years since publication, 200+ citations, and wide use and
 usefulness. A technique that provides a clear-cut improvement (e.g. an
 enhanced data structure or a more efficient approximation technique) on
 a widely-used method will also be considered for inclusion.
@@ -123,7 +123,7 @@ Inclusion of a new algorithm speeding up an existing model is easier if:
   n_samples",
 - benchmarks clearly show a speed up.
 
-Also note that your implementation need not be in scikit-learn to be used
+Also, note that your implementation need not be in scikit-learn to be used
 together with scikit-learn tools. You can implement your favorite algorithm
 in a scikit-learn compatible way, upload it to GitHub and let us know. We
 will be happy to list it under :ref:`related_projects`. If you already have
@@ -135,7 +135,7 @@ interested to look at `scikit-learn-contrib
 
 Why are you so selective on what algorithms you include in scikit-learn?
 ------------------------------------------------------------------------
-Code is maintenance cost, and we need to balance the amount of
+Code comes with maintenance cost, and we need to balance the amount of
 code we have with the size of the team (and add to this the fact that
 complexity scales non linearly with the number of features).
 The package relies on core developers using their free time to
@@ -250,7 +250,7 @@ Why do I sometime get a crash/freeze with n_jobs > 1 under OSX or Linux?
 
 Several scikit-learn tools such as ``GridSearchCV`` and ``cross_val_score``
 rely internally on Python's `multiprocessing` module to parallelize execution
-onto several Python processes by passing ``n_jobs > 1`` as argument.
+onto several Python processes by passing ``n_jobs > 1`` as an argument.
 
 The problem is that Python ``multiprocessing`` does a ``fork`` system call
 without following it with an ``exec`` system call for performance reasons. Many
@@ -327,7 +327,7 @@ You can find more information about addition of gpu support at
 `Will you add GPU support?`_.
 
 Note that scikit-learn currently implements a simple multilayer perceptron
-in `sklearn.neural_network`. We will only accept bug fixes for this module.
+in :mod:`sklearn.neural_network`. We will only accept bug fixes for this module.
 If you want to implement more complex deep learning models, please turn to
 popular deep learning frameworks such as
 `tensorflow <https://www.tensorflow.org/>`_,
@@ -355,22 +355,7 @@ this reason.
 How do I set a ``random_state`` for an entire execution?
 ---------------------------------------------------------
 
-For testing and replicability, it is often important to have the entire execution
-controlled by a single seed for the pseudo-random number generator used in
-algorithms that have a randomized component. Scikit-learn does not use its own
-global random state; whenever a RandomState instance or an integer random seed
-is not provided as an argument, it relies on the numpy global random state,
-which can be set using :func:`numpy.random.seed`.
-For example, to set an execution's numpy global random state to 42, one could
-execute the following in his or her script::
-
-    import numpy as np
-    np.random.seed(42)
-
-However, a global random state is prone to modification by other code during
-execution. Thus, the only way to ensure replicability is to pass ``RandomState``
-instances everywhere and ensure that both estimators and cross-validation
-splitters have their ``random_state`` parameter set.
+Please refer to :ref:`randomness`.
 
 Why do categorical variables need preprocessing in scikit-learn, compared to other tools?
 -----------------------------------------------------------------------------------------
@@ -400,7 +385,7 @@ not being able to transform y in a pipeline.
 Follow on github issue
 `#4143 <https://github.com/scikit-learn/scikit-learn/issues/4143>`_.
 Meanwhile check out
-:class:`sklearn.compose.TransformedTargetRegressor`,
+:class:`~compose.TransformedTargetRegressor`,
 `pipegraph <https://github.com/mcasl/PipeGraph>`_,
 `imbalanced-learn <https://github.com/scikit-learn-contrib/imbalanced-learn>`_.
 Note that Scikit-learn solved for the case where y 

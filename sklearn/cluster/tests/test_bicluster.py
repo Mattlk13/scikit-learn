@@ -9,7 +9,6 @@ from sklearn.model_selection import ParameterGrid
 from sklearn.utils._testing import assert_almost_equal
 from sklearn.utils._testing import assert_array_equal
 from sklearn.utils._testing import assert_array_almost_equal
-from sklearn.utils._testing import SkipTest
 
 from sklearn.base import BaseEstimator, BiclusterMixin
 
@@ -268,9 +267,9 @@ def test_n_features_in_(est):
 @pytest.mark.parametrize("klass", [SpectralBiclustering, SpectralCoclustering])
 @pytest.mark.parametrize("n_jobs", [None, 1])
 def test_n_jobs_deprecated(klass, n_jobs):
-    # FIXME: remove in 0.25
+    # FIXME: remove in 1.0
     depr_msg = ("'n_jobs' was deprecated in version 0.23 and will be removed "
-                "in 0.25.")
+                "in 1.0")
     S, _, _ = make_biclusters((30, 30), 3, noise=0.5, random_state=0)
     est = klass(random_state=0, n_jobs=n_jobs)
 
